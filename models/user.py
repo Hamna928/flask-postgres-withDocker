@@ -1,6 +1,6 @@
 from flask_login import UserMixin
-from sqlalchemy.orm import validates
 from db import db
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,11 +10,11 @@ class User(UserMixin, db.Model):
     authenticated = db.Column(db.Boolean(), unique=False, nullable=True)
 
     def to_json(self):
-      return {
-          "id": self.id,
-          "name": self.name,
-          "email": self.email
-      }
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+        }
 
     def __repr__(self):
         return f'<User {self.name}>'
